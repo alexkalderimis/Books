@@ -4,15 +4,15 @@
 Z<chap:OO>
 
 X<Moo>X<Module, Moo> X<Moose>X<Module, Moose> X<Mouse>X<Module, Mouse>
-X<OO Programming> Perl always suffered from the lack of a rigid object
+X<OO Programming> Perl always suffered from the lack of an integrated object
 oriented system. Although blessed references did the trick for years,
 developers felt sorry they did not have support for some common OO
 features, like interfaces (or roles), multiple inheritance and
 encapsulation.
 
-A few years ago C<Moose> appeared. It revolutionized the OO world of
+A few years ago C<Moose> appeared. It has revolutionized the OO world of
 Perl. During these years it has been enriched with a lot of relevant
-and useful features.
+and useful features, many of which are hard to find elsewhere.
 
 Nevertheless, C<Moose> still imposes a delay upon initial compilation
 and startup, which can be problematic for applications like CGI
@@ -727,9 +727,11 @@ C<MooseX::Getopt> X<Module, MooseX::Getopt> X<MooseX::Getopt> lets you
 define command line options as if they were standard C<Moose> attributes.
 
 C<MooseX::Declare> X<Module, MooseX::Declare> X<MooseX::Declare> is
-used to define methods signature as you would in a typed language like
-C or Java. At the moment it is still in alpha stage, but there are
-high hopes on it.
+used to define method signatures as you would in other modern languages
+such as Python or Ruby. Additionally, variable types can be specified as 
+you might in a a typed language like C or Java (except that the type 
+annotations are only optional). At the moment it is still in alpha stage, but there are
+high hopes for it.
 
 If you use a basic subset of C<Moose> you might want to use
 C<Any::Moose> X<Any::Moose> X<Module, Any::Moose>. This module will
