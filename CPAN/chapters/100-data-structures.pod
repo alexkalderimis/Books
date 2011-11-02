@@ -1,0 +1,102 @@
+
+=head0 Data Structures
+
+Z<chap:UTIL>
+
+X<Set::Object>
+X<List::MoreUtils>
+X<List::Gen>
+
+CPAN modules are the standard way that new language features are 
+brought into Perl. The core language is relatively conservative in
+its development, preferring for features such as new data-structures,
+utility functions and new programming paradigms to be available as 
+CPAN modules. The Object-Orientation paradigm that Moose represents
+has already been discussed, and instead this chapter covers other
+important utility modules that extend the language, focussing on extensions
+that add new data structures and extend the capabilities of those native to 
+Perl.
+
+=head1 Set::Object
+
+Perl natively supports scalar values, arrays and hash-maps. Other data
+structures need to be provided by modules. Hashes are often used in 
+Perl programmes to represent sets, but not without some contrivance. A better 
+approach for applications that need better set support is C<Set::Object>, which
+provides not just convenient methods to support set construction, but
+a variety of predicate and mutator methods for set analysis and manipulation.
+
+=head2 Construction
+
+Sets may either be constructed using the C<new> method, or by use of the C<set> 
+convenience function:
+
+  my $set_a = Set::Object->new(@things);
+  my $set_b = set(@things);
+
+  ok($set_a == $set_b);
+
+As well as being simple to construct, using Set::Object compares very favourably 
+in terms of performance with hashes for insertion and lookups. C<Set::Object>
+is designed to handle most scalar values, with the one exception being that no set it
+constructs may hold C<undef> as a value.
+
+=head2 Predicate Methods
+
+Sets are primarily concerned with membership, so obviously membership testing
+is an important part of the C<Set::Object> API:
+
+  my $words = set(qw/the quick brown fox jumps over the lazy dog/);
+  # Testing for membership:
+  ok($works->includes("the", "brown", "fox"));
+  ok($works->has("quick", "lazy"));
+  ok($works->includes("over", "the"));
+
+  # To retrieve an object from the set, use the member/element methods instead:
+  is($set->member("fox"), "fox"));
+  is($set->element("fox"), "fox"));
+
+As well as simple membership testing and member retrieval, there are also 
+set-set predicates:
+
+  my $words = set(qw/the quick brown fox jumps over the lazy dog/);
+  my $animals = set(/fox dog/);
+
+  ok($words->superset($animals), '$words contains all the words in $animals');
+  ok($words >= $animals, 'same operation using overloaded operators');
+
+  ok($animals->subset($words), '$animals is composed wholly of words from $words');
+  ok($animals <= $words, 'same operation using overloaded operators');
+  
+See also the documentation for C<proper_subset> and C<proper_superset>.
+
+For testing the set itself there is the C<is_null> method, which returns true if the 
+set is empty:
+
+  my $animals = set(/fox dog/);
+  ok(! $animals->is_null);
+
+  my $empty = set();
+  ok($empty->is_null);
+  
+
+
+  
+
+=head1 List::MoreUtils
+
+=head1 List::Gen
+
+=begin SeeAlso
+
+Set::Scalar
+Set::Infinite
+Bit::Vector
+
+=end
+
+## Local Variables:
+##  ispell-local-dictionary: "english"
+##  mode: flyspell
+## End:
+
